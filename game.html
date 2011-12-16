@@ -1,0 +1,167 @@
+<style>
+  .bullet{
+    background-color:#f00;
+    height:6px;
+    width:6px;
+    position:absolute;
+  }
+  .enemy{
+    background-color:#000;
+    height:25px;
+    width:25px;
+    position:absolute;
+  }
+  #waffles{
+    top:0;
+    left:0;
+    position:absolute;
+    height:10px;
+    width:10px;
+    background-color:#000;
+  }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script>
+var x = 500,
+    y = 700,
+    vx = 0.0,
+    vy = 0.0,
+    ax = 0.0,
+    ay = 0.0,
+    keys = {},
+    bullets = {},
+    enemies = [];
+$(function () {
+
+  bullets.mine = [];
+
+  $("body")
+    .css("position","relative")
+    .append('<div id="waffles" style=""></div>')
+  $(document).keydown( function (evt) {
+    if (((evt.which >= 37) && (evt.which <= 40)) || (evt.which == 88)){
+      keys[evt.which] = 'd';
+    } else {
+      return true;
+    }
+    evt.preventDefault();
+    evt.stopPropagation();
+  } );
+
+  $(document).keyup( function (evt) {
+    if (((evt.which >= 37) && (evt.which <= 40)) || (evt.which == 88)){
+      keys[evt.which] = 'u';
+    } else {
+      return true;
+    }
+    evt.preventDefault();
+    evt.stopPropagation();
+  } );
+
+  $(window).blur( function (evt) {
+    keys = {};
+  });
+
+  setInterval( function () {
+    var bi,
+        sb,
+        ei,
+        se,
+        enemy,
+        dead = false,
+        spread = (keys[88] === 'd') ? 1 : 10;
+    ax = 0;
+    ay = 0;
+    if (keys[38] === 'd') {
+      ay += -1;
+    }
+    if (keys[39] === 'd') {
+      ax += 1;
+    }
+    if (keys[40] === 'd') {
+      ay += 1;
+    }
+    if (keys[37] === 'd') {
+      ax += -1;
+    }
+    vx += ax*0.5;
+    vy += ay*0.5;
+    x += vx;
+    y += vy;
+    vx = vx * 0.95;
+    vy = vy * 0.95;
+    x = Math.min(1000,Math.max(0,x));
+    y = Math.min(800,Math.max(0,y));
+    $("#waffles").css({left:x-5, top:y-5});
+
+    if (bullets.mine.length > 100){
+      bullets.mine.pop();
+    } else {
+      $('body').append('<div id="bullet' + bullets.mine.length + '" class="bullet" style="top:'+y+'px;left:'+x+'px"></div>');
+    }      
+
+    bullets.mine.unshift({dead:false,x:x,y:y,vx:(Math.random()-0.5)*spread,vy:-15+Math.random()*-5});
+
+    for( bi = 0; bi < bullets.mine.length; bi += 1){
+      sb = bullets.mine[bi];
+      if (!sb.dead){
+        sb.x += sb.vx;
+        sb.y += sb.vy;
+
+        for( ei = 0; ei < enemies.length; ei += 1){
+          se = enemies[ei];
+          if (se.hp > 0){
+          if ((Math.abs(sb.x - se.x) + Math.abs(sb.y - se.y)) < 30){
+              sb.dead = true;
+              se.hp -= 1;
+              break;
+            }
+          }
+        }
+        
+        $("#bullet"+ bi).css({
+          top:  sb.y - 3,
+          left: sb.x - 3
+        });
+      } else {
+        $("#bullet"+ bi).css({
+          top:  -100,
+          left: -100
+        });
+      }
+    }
+
+    if (Math.random() > 0.99) {
+      enemy = {y:0,x:Math.random()*800 + 200,vx:0,vy:0,ax:Math.random()-0.5,ay:Math.random()*5,hp:5};
+      enemies.unshift(enemy);
+      $('body').append('<div id="enemy' + (enemies.length-1) + '" class="enemy" style="top:'+enemy.y+'px;left:'+enemy.x+'px"></div>');
+    }
+
+    for( bi = 0; bi < enemies.length; bi += 1){
+      se = enemies[bi];
+      if (se.hp > 0 ) {
+        se.x  += se.vx;
+        se.y  += se.vy;
+        se.vx += se.ax * 0.1;
+        se.vy += se.ay * 0.1;
+        se.vx *= 0.95;
+        se.vy *= 0.95;
+        
+        se.x = Math.min(1000,Math.max(0,se.x));
+        se.y = Math.min( 800,Math.max(-100,se.y));
+
+        $("#enemy"+ bi).css({
+          top:  se.y - 17.5,
+          left: se.x - 17.5
+        });
+      } else {
+        $("#enemy"+ bi).css({
+          top:  -100,
+          left: -100
+        });
+      }
+    }
+  }, 13);
+});
+</script>
