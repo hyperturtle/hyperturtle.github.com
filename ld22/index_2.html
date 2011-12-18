@@ -7,26 +7,20 @@
     <head>
         <title></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="assets/style.css"><link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="assets/style.css">
     </head>
 <body>
-<!--
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
--->
-<script src="assets/jquery.min.js"></script>
-<script src="assets/underscore-min.js"></script>
 <script src="assets/libs.js"></script>
 <script src="assets/script.js"></script>
-<h1>The Lone Terraformer</h1>
-<div id="container">
-    <div id="map"></div>
-    <div id="toolbox">
-        <h1>Current</h1>
-        <div id="cursor"></div>
-        <div id="info"></div>
-        <div id="robo"></div>
-    </div>
+<div id="container"><div id="map"></div><div id="toolbox">
+<div class="tool" id="pointer" data-robot='pointer'>pointer</div>
+<div class="tool" id="shovel"  data-robot='shovel'>seed</div>
+<div class="tool" id="seed"    data-robot='seed'>seed</div>
+<div class="tool" id="solar"   data-robot='solar'>solar</div>
+
+<div class="stat" id="energy"></div>
 </div>
 </div>
 </body>

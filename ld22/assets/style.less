@@ -1,0 +1,122 @@
+@import "base.less";
+
+
+
+@tilesize:      50px;
+@border:         2px;
+@toolboxwidth: 200px;
+
+
+body{
+    margin:50px 0;
+    background:url(back.gif) repeat top center;
+}
+h1{
+  margin:0;
+  text-align:center;
+  font-family: 'Lobster', cursive;
+  font-size:80px;
+  color:#333;
+  text-shadow:0 0 5px #ccc;
+}
+.tile {
+    height:@tilesize - 2 * @border;
+    width:@tilesize - 2 * @border;
+    //border:solid @border #fafafa;
+    margin:@border;
+    float:left;
+
+    cursor:pointer;
+
+    &:hover {
+        border:solid @border #900;
+        margin:0;
+    }
+    background:url(tiles.png);
+}
+
+#map {
+    height:@tilesize * 10;
+    width:@tilesize * 10;
+    float:left
+}
+
+#toolbox{
+    position:relative;
+    width: @toolboxwidth;
+    height:@tilesize*10;
+    float:left;
+
+    h1 {
+        margin:15px 0 0 10px;
+        text-align:right;
+        width:90px;
+        font-size:20px;
+        float:left;
+    }
+}
+
+#container {
+    width:@tilesize * 10 + @toolboxwidth;
+    margin:20px auto;
+}
+
+
+.tiletype_0  { background-position:   0px    0px; }
+.tiletype_1  { background-position: -50px  -50px; }
+.tiletype_2  { background-position:-100px  -50px; }
+.tiletype_3  { background-position: -50px    0px; }
+.tiletype_100{ background-position:-100px    0px; }
+.tiletype_101{ background-position:-150px    0px; }
+.tiletype_102{ background-position:-200px    0px; }
+.tiletype_103{ background-position:-200px  -50px; }
+
+#cursor {
+    height:50px;
+    width:50px;
+    background-image:url(tiles.png);
+    position:absolute;
+    top:0;
+    right:30px;
+
+    background-color:#ffa;
+    border: solid 5px #666;
+
+  -webkit-border-radius: 20px; 
+     -moz-border-radius: 20px; 
+          border-radius: 20px; 
+}
+
+#info {
+  position:absolute;
+  bottom: 150px;
+  left:10px;
+  height:280px;
+  width:180px;
+
+  background:#fff;
+
+  -webkit-box-shadow: 0px 0px 10px #cccccc; 
+     -moz-box-shadow: 0px 0px 10px #cccccc; 
+          box-shadow: 0px 0px 10px #cccccc; 
+
+  -webkit-border-radius: 20px; 
+     -moz-border-radius: 20px; 
+          border-radius: 20px; 
+  
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+
+}
+
+#robo {
+  bottom:0;
+  position:absolute;
+  height:150px;
+  width:100px;
+  background:transparent url(tiles.png) no-repeat -50px -100px;
+  left:50px;
+}
+
+.cursor_0 { background-position:   0px   -50px; }
+.cursor_1 { background-position:   0px  -100px; }
+.cursor_2 { background-position:-100px     0px; }
