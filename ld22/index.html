@@ -17,17 +17,61 @@
 <script src="assets/jquery.min.js"></script>
 <script src="assets/underscore-min.js"></script>
 <script src="assets/libs.js"></script>
-<script src="assets/script.js"></script>
+<script src="assets/script.min.js"></script>
+<div id="sky"></div>
 <h1>The Lone Terraformer</h1>
 <div id="container">
     <div id="map"></div>
     <div id="toolbox">
         <h1>Current</h1>
         <div id="cursor"></div>
-        <div id="info"></div>
-        <div id="robo"></div>
+        <div id="info">
+<div class="cinfo info_0">
+<b>Drill</b>
+Drill+Trash = Lasers
+Drill+Any Plant = Store Plant
+</div>
+<div class="cinfo info_1">
+<b>Laser</b>
+Laser + Ice = Water
+Laser + Water = Store Cloud
+</div>
+<div class="cinfo info_2">
+<b>Grass</b>
+3xGrass = Plant
+</div>
+<div class="cinfo info_3">
+<b>Plant</b>
+3xPlant = Tree
+</div>
+<div class="cinfo info_4">
+<b>Tree</b>
+3xTree = Forest
+</div>
+<div class="cinfo info_5">
+<b>Forest</b>
+</div>
+<div class="cinfo info_6">
+<b>Cloud</b>
+Cloud+Acid = water
+Cloud+Acid Cloud = Both gone
+</div>
+<div id="storage">
+</div>
+<div id="stats">
+</div>
+        </div>
+        <div id="robo">
+      </div>
     </div>
 </div>
 </div>
+        <div id="menu">
+          <div class="restart" data-robot="0">Easy</div>
+          <div class="restart locked locked1" data-robot="1">Medium</div>
+          <div class="restart locked locked2" data-robot="2">Hard</div>
+          <div class="restart locked locked3" data-robot="3">Super Hard</div>
+          <h3> Complete easier difficulties to unlock others </h3>
+        </div>
 </body>
 </html>

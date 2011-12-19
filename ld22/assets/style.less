@@ -10,6 +10,14 @@
 body{
     margin:50px 0;
     background:url(back.gif) repeat top center;
+    overflow:hidden;
+}
+#sky{
+    background:url(sky.gif) repeat top center;
+    position:absolute;
+    top:0;
+    width:100%;
+    height:2000px;
 }
 h1{
   margin:0;
@@ -18,6 +26,12 @@ h1{
   font-size:80px;
   color:#333;
   text-shadow:0 0 5px #ccc;
+}
+h3{
+  font-family: 'Lobster', cursive;
+  clear:both;
+  text-align:center;
+  padding:20px 0;
 }
 .tile {
     height:@tilesize - 2 * @border;
@@ -35,10 +49,31 @@ h1{
     background:url(tiles.png);
 }
 
+.cloud {
+    height:30px;
+    width:@tilesize - 2 * @border;
+
+    position:absolute;
+
+    background:url(tiles.png);
+
+
+
+  -webkit-transition: all 0.9s ease-out;  
+     -moz-transition: all 0.9s ease-out;  
+      -ms-transition: all 0.9s ease-out;  
+       -o-transition: all 0.9s ease-out;  
+          transition: all 0.9s ease-out;
+}
+
+.cloudtype_water { background-position: -150px  -50px }
+.cloudtype_acid  { background-position: -150px -100px }
+
 #map {
     height:@tilesize * 10;
     width:@tilesize * 10;
-    float:left
+    float:left;
+    position:relative;
 }
 
 #toolbox{
@@ -59,6 +94,7 @@ h1{
 #container {
     width:@tilesize * 10 + @toolboxwidth;
     margin:20px auto;
+    height:500px;
 }
 
 
@@ -66,6 +102,7 @@ h1{
 .tiletype_1  { background-position: -50px  -50px; }
 .tiletype_2  { background-position:-100px  -50px; }
 .tiletype_3  { background-position: -50px    0px; }
+.tiletype_4  { background-position:-200px -100px; }
 .tiletype_100{ background-position:-100px    0px; }
 .tiletype_101{ background-position:-150px    0px; }
 .tiletype_102{ background-position:-200px    0px; }
@@ -92,7 +129,10 @@ h1{
   bottom: 150px;
   left:10px;
   height:280px;
-  width:180px;
+  width:160px;
+  padding:0 10px;
+
+  font-size:12px;
 
   background:#fff;
 
@@ -106,6 +146,7 @@ h1{
   
   -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
 
+  font-family:monospace;
 }
 
 #robo {
@@ -120,3 +161,49 @@ h1{
 .cursor_0 { background-position:   0px   -50px; }
 .cursor_1 { background-position:   0px  -100px; }
 .cursor_2 { background-position:-100px     0px; }
+.cursor_3 { background-position:-150px     0px; }
+.cursor_4 { background-position:-200px     0px; }
+.cursor_5 { background-position:-200px   -50px; }
+.cursor_6 { background-position:-150px   -50px; }
+
+.cinfo {
+  white-space: pre-line;
+  display:none;
+}
+
+#storage, #stats{
+  margin-top:5px;
+}
+
+.ct_0 .info_0 { display:block }
+.ct_1 .info_1 { display:block }
+.ct_2 .info_2 { display:block }
+.ct_3 .info_3 { display:block }
+.ct_4 .info_4 { display:block }
+.ct_5 .info_5 { display:block }
+.ct_6 .info_6 { display:block }
+
+
+#menu{
+  width:700px;
+  margin:100px auto;
+}
+
+.restart {
+  background-color:#369;
+  float:left;
+  margin:0 70px 0 0;
+  padding:20px;
+  cursor:pointer;
+  font-family: 'Lobster', cursive;
+  color:#fff;
+  -webkit-border-radius: 20px; 
+     -moz-border-radius: 20px; 
+          border-radius: 20px; 
+  
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+.locked {
+  background-color:#333;
+}
