@@ -31,6 +31,8 @@
 <h1 id="score"></h1>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script src="Three.js"></script>
+<script src="RequestAnimationFrame.js"></script>
 <script>
 
 
@@ -85,7 +87,16 @@ $(function () {
     mouse.x = e.pageX;
     mouse.y = e.pageY;
   }); 
-  setInterval( function () {
+  function animate() {
+
+    // Include examples/js/RequestAnimationFrame.js for cross-browser compatibility.
+    requestAnimationFrame( animate );
+    render();
+
+  }
+  animate();
+
+  function render(){
     var bi,
         sb,
         ei,
@@ -232,6 +243,6 @@ $(function () {
       }
     }
     $("#score").html("SCORE: "+parseInt(score)+"<br/>"+"LEVEL:"+parseInt(level));
-  }, 13);
+  }
 });
 </script>
