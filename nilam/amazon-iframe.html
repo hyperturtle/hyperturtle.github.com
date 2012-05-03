@@ -1,0 +1,44 @@
+<html>
+<head>
+<script language="JavaScript" type="text/javascript">
+var winWidth = screen.width;
+var winheight = screen.height;
+winheight = parseInt(0.7 * winheight);
+
+</script>
+
+<style type="text/css">
+.main
+{
+	background-color:#FFFFFF ;
+	width:800px;
+}
+
+.bd_main
+{
+	background-color:#CCCCCC ;
+}
+</style>
+
+
+</head>
+
+
+<body class="bd_main">
+
+
+
+
+<div  align="center" align="center">
+    <h1 >Amazon - iframe dynamic height based on monitor resolution</h1>
+    <div style="height:150px;width:1px"></div>
+    <div class="main" align="center">
+        <iframe src='long-form.html' width='100%'  frameborder='0' id='cedge_frame'></iframe>
+         <script type="text/javascript">document.getElementById('cedge_frame').style.height = winheight + "px";</script>
+    </div>
+
+</div>
+
+</body>
+
+</html>
